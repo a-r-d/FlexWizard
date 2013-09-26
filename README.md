@@ -8,7 +8,7 @@ the user will become lost or confused while attempting to get through
 data entry.
 
 
-![Image](https://github.com/a-r-d/FlexWizard/tree/master/screenshots/example_wizard_1.png?raw=true)
+![Image](https://raw.github.com/a-r-d/FlexWizard/master/screenshots/example_wizard_1.png)
 
 ## Overview
 
@@ -20,9 +20,9 @@ You can use the default SkinClass that comes with the wizard or write your
 own if you want things to lay out differently. 
 
 _Steps_ you create should extend _Step_ and override 3 methods:
-1. validateFunction():Boolean
-2. dataCreateFunction():Dictionary
-3. updateDataFunction():void
+ +  validateFunction():Boolean
+ +  dataCreateFunction():Dictionary
+ +  updateDataFunction():void
 
 
 ## Explanation of Overrides:
