@@ -23,7 +23,7 @@
 		]]>
 	</fx:Script>
 	<s:Group width="100%" height="100%">
-		<flexwizard:Wizard id="myWizard">
+		<flexwizard:Wizard id="myWizard" wiz_mode="WIZ_CREATE" >
 			<flexwizard:steps>
 				<steps:Step1TestTask />
 				<steps:Step2TestTask />

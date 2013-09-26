@@ -90,7 +90,8 @@ package com.roughbros.flexwizard
 		 */
 		public static const WIZ_MODE_CREATE:String = "WIZ_CREATE";
 		public static const WIZ_MODE_UPDATE:String = "WIZ_UPDATE";
-		public var wiz_mode:String = WIZ_MODE_CREATE;
+		
+		private var _wiz_mode:String = WIZ_MODE_CREATE;
 		
 		/***
 		 * Constructor, getters, setters.
@@ -301,11 +302,21 @@ package com.roughbros.flexwizard
 		/***
 		 * Utilities
 		 */
-		
 		public static function toArray(iterable:*):Array {
 			var ret:Array = [];
 			for each (var elem:Object in iterable) ret.push(elem);
 			return ret;
+		}
+
+		[Inspectable(category="General", enumeration="WIZ_CREATE,WIZ_UPDATE", defaultValue="WIZ_CREATE")]
+		public function get wiz_mode():String
+		{
+			return _wiz_mode;
+		}
+
+		public function set wiz_mode(value:String):void
+		{
+			_wiz_mode = value;
 		}
 
 		
