@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				creationComplete="itemrenderer1_creationCompleteHandler(event)"
+				>
+	<fx:Script>
+		<![CDATA[
+			import com.roughbros.flexwizard.Step;
+			import com.roughbros.flexwizard.StepEvent;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var step:Step;
+
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				step = Step(this.data);
+				var renderer:ItemRenderer = this;
+				step.addEventListener( StepEvent.STEP_VALIDITY_CHANGED, checkValidState);
+				checkValidState( null );
+			}
+			
+			private function checkValidState( e:Event ):void {
+				if( step.valid ) {
+					this.currentState = "valid";
+				} else {
+					this.currentState = "invalid";
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="valid" />
+		<s:State name="invalid" />
+	</s:states>
+	
+	<s:HGroup 
+		height="25"
+		verticalAlign="middle"
+		width="100%"
+		paddingLeft="5"
+		>
+		<s:Label 
+			text="{step.stepName}" 
+			width="100%"
+			/>
+		<s:Image 
+			id="chkIcon" 
+			visible.valid="true"
+			visible.invalid="false"
+			source="assets/check.png"
+			height="25"
+			horizontalAlign="right"
+			/>
+		<s:Image 
+			id="chkIconCancel" 
+			visible.valid="false"
+			visible.invalid="true"
+			source="assets/cancel.png"
+			height="25"
+			horizontalAlign="right"
+			/>
+	</s:HGroup>
+	
+</s:ItemRenderer>

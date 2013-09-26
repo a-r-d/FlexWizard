@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flexwizard="me.ard.flexwizard.*"
+					   creationComplete="windowedapplication1_creationCompleteHandler(event)"
+					   width="300"
+					   height="300"
+					   >
+	<fx:Script>
+		<![CDATA[
+			import com.roughbros.flexwizard.Step;
+			import com.roughbros.flexwizard.Wizard;
+			import com.roughbros.flexwizard.WizardEvent;
+			
+			import examples.AS3BuildExample;
+			import examples.MXMLBuildExample;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.components.Window;
+			
+			import steps.Step1TestTask;
+			import steps.Step2TestTask;
+			import steps.Step3TaskTest;
+			import steps.Step4TaskTest;
+			
+			private var wiz:Wizard;
+			private var stepsVec:Vector.<Step>;
+			
+			protected function windowedapplication1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+			}
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var as3Window:AS3BuildExample = new AS3BuildExample();
+				as3Window.open();
+				
+				as3Window.addEventListener( WizardEvent.WIZARD_CLICK_FINISH, function():void {
+					as3Window.close();
+				});
+
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				var mxmlWindow:MXMLBuildExample = new MXMLBuildExample();
+				mxmlWindow.open();
+				
+				mxmlWindow.addEventListener( WizardEvent.WIZARD_CLICK_FINISH, function():void {
+					mxmlWindow.close();
+				});
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:VGroup paddingTop="20" paddingLeft="20">
+		<s:Button label="Open Example 1- AS3 Method" click="button1_clickHandler(event)"/>
+		<s:Button label="Open Example 1- MXML Method" click="button2_clickHandler(event)"/>
+	</s:VGroup>
+
+</s:WindowedApplication>

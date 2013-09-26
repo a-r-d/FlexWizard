@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.roughbros.flexwizard.Wizard"/>
+    <classEntry path="com.roughbros.flexwizard.skins.DefaultWizardSkinClass"/>
+    <classEntry path="com.roughbros.flexwizard.skins.StepListItemRenderer"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Window xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" width="700" height="500"
+		  creationComplete="window1_creationCompleteHandler(event)"
+		  >
+	<fx:Script>
+		<![CDATA[
+			import com.roughbros.flexwizard.Step;
+			import com.roughbros.flexwizard.Wizard;
+			import com.roughbros.flexwizard.WizardEvent;
+			
+			import mx.events.FlexEvent;
+			
+			import steps.Step1TestTask;
+			import steps.Step2TestTask;
+			import steps.Step3TaskTest;
+			import steps.Step4TaskTest;
+			
+			private var wiz:Wizard;
+			private var stepsArr:Array;
+			
+			
+			protected function window1_creationCompleteHandler(event:FlexEvent):void
+			{
+				stepsArr = [];
+				var step1:Step1TestTask = new Step1TestTask();
+				var step2:Step2TestTask = new Step2TestTask();
+				var step3:Step3TaskTest = new Step3TaskTest();
+				var step4:Step4TaskTest = new Step4TaskTest();
+				
+				stepsArr.push( step1 );
+				stepsArr.push( step2 );
+				stepsArr.push( step3 );
+				stepsArr.push( step4 );
+				
+				wiz = new Wizard();
+				wiz.steps = stepsArr;
+				
+				this.main.addElement( wiz );
+				
+				wiz.addEventListener( WizardEvent.WIZARD_CLICK_FINISH, wizDone );
+				wiz.addEventListener( WizardEvent.WIZARD_CANCEL, wizCancel );
+			}
+			
+			public function getWizardData():Array {
+				return wiz.compileStepData();
+			}
+			
+			private function wizDone( e:WizardEvent ):void {
+				trace("Wizard done clicked!");
+				
+				// check status of all steps:
+				var allvalid:Boolean = wiz.validateAllSteps();
+				trace("Are all steps valid? " + allvalid );
+				
+				// get the data dictionaries for all of the steps.
+				var stepDataArray:Array = wiz.compileStepData();
+				trace("Number of step objects: " + stepDataArray.length );
+				
+				/**
+				 * Because we created our steps we know what the data will look like.
+				 * you can go through and get what you want to perform your final action.
+				 * 
+				 */
+				try{
+					// we will not process data until it is valid...
+					if( allvalid ) {
+						var dict1:Dictionary = stepDataArray[0];
+						trace("New Task Name: " + dict1["name"]);
+						
+						var dict2:Dictionary = stepDataArray[1];
+						trace("New task startDate: " + dict2["start"].toString());
+						
+						var dict3:Dictionary = stepDataArray[2];
+						trace("New task parent: " + dict3["task"]);
+						
+						var dict4:Dictionary = stepDataArray[3];
+						trace("New task assignee: " + dict4["user"]);
+					}
+				} catch( err:Error ) {
+					trace("error processing step data: " + err.message );
+				}
+				
+				this.dispatchEvent( e );
+			}
+			
+			private function wizCancel( e:WizardEvent ):void {
+				trace("Wizard cancel clicked.");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	
+	<s:SkinnableContainer id="main" width="100%" height="100%"></s:SkinnableContainer>
+	
+</s:Window>
