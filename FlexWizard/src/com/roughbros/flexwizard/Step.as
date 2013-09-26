@@ -40,31 +40,13 @@ package com.roughbros.flexwizard
 			return;
 		}
 		
-		/****
-		 * 
-		 * Validation function:
-		 * 		returns: Boolean
-		 * 		Note:
-		 * 			Pass in a function that returns boolean
-		 * 			after some validation is done on the stepData.
-		 */
-		
+		// called by Wizard.as
 		public function validateData():Boolean {
 			valid = validateFunction();
 			this.dispatchEvent( new StepEvent( StepEvent.STEP_VALIDITY_CHANGED, this ));
 			return valid;
 		}
 		
-		/****
-		 * Data create function:
-		 * 		returns data Dictionary.
-		 * 		set this in your step instance,
-		 * 		gives a dictionary of your step data
-		 * 
-		 * When you call createData it returns empty dict
-		 * 	if no fn.
-		 * 
-		 */
 		// called by Wizard.as
 		public function createData():Dictionary {
 			this._stepData = dataCreateFunction();

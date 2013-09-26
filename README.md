@@ -7,6 +7,7 @@ useful for building CRUD apps where the data is complex is enough that
 the user will become lost or confused while attempting to get through 
 data entry.
 
+## [get the SWC file](https://github.com/a-r-d/FlexWizard/tree/master/FlexWizard/bin)
 
 ![Image](https://raw.github.com/a-r-d/FlexWizard/master/screenshots/example_wizard_1.png)
 
@@ -45,9 +46,16 @@ of all the step's step data Dictionaries.
 
 ### updateDataFunction():void
 
-If you will ever be editing the in the wizard this is how you set the initial 
+If you will ever be editing the data in the wizard this is how you set the initial 
 states of the form components with the old data. Make sure to set _stepData_ on
 your step, and in your update function look there to get your data.
+
+
+## Problems / Features
+
+You can open an issue or fix it and submit a pull request! I may not add a feature
+but if you want to go for it.
+
 
 ## Thanks
 
