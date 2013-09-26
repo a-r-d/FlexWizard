@@ -18,7 +18,8 @@ You can initialize a wizard instance with MXML or AS3 and there are examples
 of both.
 
 You can use the default SkinClass that comes with the wizard or write your 
-own if you want things to lay out differently. 
+own if you want things to lay out differently. You do not have to customize the 
+wizard to use it. Just create your own steps.
 
 _Steps_ you create should extend _Step_ and override 3 methods:
  +  validateFunction():Boolean
@@ -51,10 +52,18 @@ states of the form components with the old data. Make sure to set _stepData_ on
 your step, and in your update function look there to get your data.
 
 
+## Build your wizard with MXML
+
+You can make your wizard using MXML but you still have to create your _Steps_ 
+to add to the wizard instance.
+
+![Image](https://raw.github.com/a-r-d/FlexWizard/master/screenshots/wizard_mxml_1.png)
+
+
 ## Problems / Features
 
 You can open an issue or fix it and submit a pull request! I may not add a feature
-but if you want to go for it.
+but if you want to go for it and I will merge it in. 
 
 
 ## Thanks
