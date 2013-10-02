@@ -1,12 +1,15 @@
 package steps
 {
 	import com.roughbros.flexwizard.Step;
+	import com.roughbros.flexwizard.StepFlowEvent;
 	
+	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
 	import mx.core.IDeferredContentOwner;
 	import mx.core.IVisualElementContainer;
 	
+	import spark.components.Button;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
 	
@@ -18,7 +21,7 @@ package steps
 		
 		[SkinPart(required="true")]
 		public var taskDescription:TextArea;
-		
+
 		public function Step1TestTask()
 		{
 			super();

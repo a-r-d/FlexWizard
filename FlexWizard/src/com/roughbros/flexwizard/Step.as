@@ -22,6 +22,11 @@ package com.roughbros.flexwizard
 		private var _stepDescription:String;
 		private var _automaticValidation:Boolean = true;
 		
+		// deal with step sequences:
+		private var _parentStep:Class = null; // set to parent class if has one.
+		private var _parentStepInstance:Step;
+		private var _stepSequence:Array = [];
+		
 		public function Step()
 		{
 			super();
@@ -60,6 +65,8 @@ package com.roughbros.flexwizard
 		 * but only if it is turned on and we encounter a UIComponent.
 		 */
 		override protected function partAdded(partName:String, instance:Object) : void {
+			super.partAdded(partName, instance);
+			
 			if( automaticValidation ) {
 				if( instance is UIComponent ) {
 					var cmp:UIComponent = UIComponent(instance);
@@ -79,6 +86,7 @@ package com.roughbros.flexwizard
 			}
 		}
 				
+		
 
 		public function get validationMessage():String
 		{
@@ -138,6 +146,46 @@ package com.roughbros.flexwizard
 		public function set automaticValidation(value:Boolean):void
 		{
 			_automaticValidation = value;
+		}
+
+		public function get parentStep():Class
+		{
+			return _parentStep;
+		}
+
+		public function set parentStep(value:Class):void
+		{
+			_parentStep = value;
+		}
+
+		public function get stepSequence():Array
+		{
+			return _stepSequence;
+		}
+
+		[ArrayElementType("com.roughbros.flexwizard.Step")]
+		public function set stepSequence(value:Array):void
+		{
+			_stepSequence = value;
+			
+			if( _stepSequence.length > 0 ) {
+				for each( var s:Step in _stepSequence ) {
+					var stepClassName:Class = Object(this).constructor;
+					s.parentStep = stepClassName;
+					s.parentStepInstance = this;
+				}
+			}
+			
+		}
+
+		public function get parentStepInstance():Step
+		{
+			return _parentStepInstance;
+		}
+
+		public function set parentStepInstance(value:Step):void
+		{
+			_parentStepInstance = value;
 		}
 		
 		

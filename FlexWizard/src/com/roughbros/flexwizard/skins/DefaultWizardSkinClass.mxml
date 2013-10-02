@@ -114,7 +114,7 @@
 					
 					itemRenderer="com.roughbros.flexwizard.skins.StepListItemRenderer" 
 					width="25%"
-					minWidth="200"
+					minWidth="225"
 					/>
 				<s:VGroup 
 					id="contentVGroup"

@@ -27,7 +27,7 @@ _Steps_ you create should extend _Step_ and override 3 methods:
  +  updateDataFunction():void
 
 
-## Explanation of Overrides:
+## Things you should do: An Explanation of Overrides
 
 ### validateFunction():Boolean
 
@@ -52,12 +52,41 @@ states of the form components with the old data. Make sure to set _stepData_ on
 your step, and in your update function look there to get your data.
 
 
+## Things you should not do:
+
+Don't override _partAdded()_ without calling super.partAdded() or else you will
+lose the autovalidation logic added in Step.as- if you don't want to hassle with
+this, just go ahead and add a _FlexEvent.CREATION_COMPLETE_ listener to the
+Step in the constructor and put your code there. 
+
+
 ## Build your wizard with MXML
 
 You can make your wizard using MXML but you still have to create your _Steps_ 
 to add to the wizard instance.
 
 ![Image](https://raw.github.com/a-r-d/FlexWizard/master/screenshots/wizard_mxml_1.png)
+
+
+## Non linear step flow:
+
+This wizard is very simple and designed specifically for non-branching linear flow. However,to accomidate repetitive actions such as repeatedly adding things to a list, and
+to deal with optional branches you can add steps within steps. By setting sub-steps into the _stepSequence_ array of the parent step you can create branches.
+
+### A brief step by step:
+
+ + 1) Create a step you want to branch off of another step.
+ + 2) Create a button on the parent that throws StepFlowEvent.STEP_SUBSEQ_LOOP_START and  
+        set _this_ as the initial step.
+ + 3) Listen for StepFlowEvent.STEP_LOOP_CONTINUE to get the data from the child step.
+
+
+The next/prev buttons will skip over these sub sequence steps, and you 
+will only be able to reach them with a StepFlowEvent.
+
+If you fire StepFlowEvent.STEP_SUBSEQ_LOOP_START then you will return to the 
+original parent event. If you fire StepFlowEvent.STEP_SUBSEQ_ONCE_START you 
+will be able to go on the next step in the list.
 
 
 ## Problems / Features

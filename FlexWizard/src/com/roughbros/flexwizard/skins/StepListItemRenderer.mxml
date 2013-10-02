@@ -10,6 +10,7 @@
 			import com.roughbros.flexwizard.Step;
 			import com.roughbros.flexwizard.StepEvent;
 			
+			import mx.controls.Spacer;
 			import mx.events.FlexEvent;
 			
 			[Bindable]
@@ -21,6 +22,13 @@
 				var renderer:ItemRenderer = this;
 				step.addEventListener( StepEvent.STEP_VALIDITY_CHANGED, checkValidState);
 				checkValidState( null );
+				
+				if( step.parentStep != null ) {
+					var space:Spacer = new Spacer();
+					space.width = 10;
+					mainGroup.addElementAt( space, 0 );
+					this.stepname.setStyle("color", 0xdddddd);
+				}
 			}
 			
 			private function checkValidState( e:Event ):void {
@@ -40,14 +48,17 @@
 	</s:states>
 	
 	<s:HGroup 
+		id="mainGroup"
 		height="25"
 		verticalAlign="middle"
 		width="100%"
 		paddingLeft="5"
 		>
 		<s:Label 
+			id="stepname"
 			text="{step.stepName}" 
 			width="100%"
+			
 			/>
 		<s:Image 
 			id="chkIcon" 

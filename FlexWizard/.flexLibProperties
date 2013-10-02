@@ -4,6 +4,7 @@
     <classEntry path="com.roughbros.flexwizard.Wizard"/>
     <classEntry path="com.roughbros.flexwizard.skins.DefaultWizardSkinClass"/>
     <classEntry path="com.roughbros.flexwizard.skins.StepListItemRenderer"/>
+    <classEntry path="com.roughbros.flexwizard.StepFlowEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
